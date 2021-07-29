@@ -1,0 +1,53 @@
+{
+  // Array of objects for input datasets
+  "inputDatasets": [
+    {
+      // ID used to access the input dataset, and to identify datasets of this type
+      "id": "sopTypeC",
+      // Label shown to the user
+      "label": "Friendly Name for Dataset Type C",
+      "optional": false,
+      // Will be shown in a data table preview
+      "formatPreview": [
+        ["id", "firstName", "name", "scientificName"],
+        ["1", "Kelila", "Civet, common palm", "Paradoxurus hermaphroditus"],
+        ["2", "Victor", "Western spotted skunk", "Spilogale gracilis"],
+        ["3", "Giacomo", "Asian water dragon", "Physignathus cocincinus"]
+      ]
+    }
+  ],
+  // Array of objects for inputs
+  "inputs": [
+    {
+      // ID used to access the input
+      "id": "demandMultiplier",
+      // Label shown to the user
+      "label": "Demand Multiplier",
+      "defaultValue": "string, boolean, number, or date",
+      // Type can be text, number, slider, checkbox, date, dateRange, or select
+      "type": "slider",
+      // Text properties (none)
+      // Number properties
+      "min": 0,
+      "max": 100,
+      // Slider properties
+      "min": 0,
+      "max": 5,
+      "stepSize": 0.1,
+      "labelStepSize": 1,
+      // Checkbox properties (none)
+      // Date and DateRange properties
+      // (Date-only portion of ISO 8601 format, as string)
+      "min": "YYYY-MM-DD",
+      "max": "YYYY-MM-DD",
+      "showShortcuts": "future", // or "past" or "none"
+      // Select properties
+      "options": [
+        // The defaultValue should correspond to one of these values
+        { "value": "opt1", "label": "Option 1" },
+        { "value": "opt2", "label": "Option 2" },
+        { "value": "opt2", "label": "Option 2" }
+      ]
+    }
+  ]
+}

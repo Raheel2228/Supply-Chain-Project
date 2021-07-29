@@ -1,0 +1,16 @@
+version: 0.1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - NODE_OPTIONS=--max-old-space-size=6144 yarn install
+    build:
+      commands:
+        - NODE_OPTIONS=--max-old-space-size=6144 yarn build
+  artifacts:
+    baseDirectory: packages/v1/build
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - node_modules/**/*

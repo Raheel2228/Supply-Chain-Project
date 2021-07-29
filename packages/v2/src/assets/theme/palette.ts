@@ -1,0 +1,17 @@
+export const palette = {
+  blue: "#1977AE",
+  dustyBlue: "#195D96",
+  grape: "#6262A7",
+  deepBlue: "#0D3590",
+  lightBlue: "#52BFB5",
+  teal: "#146A94",
+  seaFoam: "#49BF79",
+  grass: "#78C045",
+  lime: "#CDD941",
+  white: "#FFFFFF",
+  black: "#231F20",
+  black20: "rgba(35, 31, 32,0.2)",
+  black50: "rgba(35, 31, 32,0.5)",
+  black80: "rgba(35, 31, 32,0.8)",
+  white50: "rgba(255, 255, 255, 0.5)",
+};

@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "start": "yarn workspace v1 start",
+    "build": "yarn workspace v1 build",
+    "v2": "yarn workspace v2"
+  }
+}

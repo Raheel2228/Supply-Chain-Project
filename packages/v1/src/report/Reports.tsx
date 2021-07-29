@@ -1,0 +1,316 @@
+import React, { useCallback } from "react";
+import {
+  Breadcrumbs,
+  IBreadcrumbProps,
+  HTMLTable,
+  Icon,
+  Tooltip,
+  Callout,
+  NonIdealState,
+  Classes,
+  Spinner,
+} from "@blueprintjs/core";
+import { Link, useHistory } from "react-router-dom";
+import { useApi } from "../util/api";
+import DelayedSpinner from "../common/DelayedSpinner";
+import { formatTimestamp } from "../util/date";
+import useQueryParams from "../util/useQueryParams";
+import { Script } from "../admin/ScriptSelector";
+import { Model, ModelInputValues, ModelInputDatasets } from "../model/Models";
+import { Dataset } from "../util/scriptSchema";
+import { useUserState } from "../common/UserDataLoader";
+import { Helmet } from "react-helmet-async";
+import Paginate from "../nav/Paginate";
+import DebouncedInputGroup from "../common/DebouncedInputGroup";
+import { routerBreadcrumbRenderer } from "../nav/RouterBreadcrumb";
+import TagSelector from "../common/TagSelector";
+import TagList from "../common/TagList";
+import StateFilter, { StateFilterValue } from "../common/StateFilter";
+import { clientPath } from "../util/route";
+import useMemoryState from "../util/useMemoryState";
+
+export enum ReportState {
+  WAITING = "WAITING",
+  RUNNING = "RUNNING",
+  ERROR = "ERROR",
+  UNSAVED = "UNSAVED",
+  SAVED = "SAVED",
+  ARCHIVED = "ARCHIVED",
+}
+
+export type ReportBlob = {
+  id: string;
+  reportId: string;
+  reportTab?: string;
+  url: string;
+  title?: string;
+  fileName?: string;
+  // Blob types are currently not set in stone, hence the | string
+  type: "html" | "iframe" | "themedIframe" | "markdown" | string;
+};
+
+export type ReportTag = {
+  reportId: string;
+  tag: string;
+};
+
+export type Report = {
+  id: string;
+  clientId: string;
+  modelId: string;
+  scriptId: string;
+  name: string;
+  description?: string;
+  public: boolean;
+  publicInputs: boolean;
+  state: ReportState;
+  inputs: ModelInputValues;
+  inputDatasets: ModelInputDatasets;
+  startTime: Date;
+  scheduled: boolean;
+  endTime: Date | null;
+  // Explicit tab ordering. If empty, implicit order (from blobs and datasets) will be used.
+  // If a blob or dataset has a tab not listed in this array, its tab will be at the end.
+  // Ex: explicit = [C,B,A], implicit = [A,B,C,D,E,F], result = [C,B,A,D,E,F]
+  tabs: string[];
+  // Script, model, and tags are partially included, depending on query
+  model?: Model;
+  script?: Script;
+  tags?: ReportTag[];
+  outputDatasets?: Dataset[];
+  blobs: ReportBlob[];
+};
+
+interface IReportStatusIconProps {
+  report: Report;
+  showTooltip?: boolean;
+}
+
+export function ReportStatusIcon({
+  report: { state },
+  showTooltip = true,
+}: IReportStatusIconProps) {
+  let icon = null;
+  let tooltip = "";
+  if (state === ReportState.ERROR) {
+    tooltip = "Error running report";
+    icon = <Icon icon="error" intent="danger" />;
+  }
+  if (state === ReportState.WAITING || state === ReportState.RUNNING) {
+    tooltip = "Report running…";
+    icon = <Icon icon="refresh" />;
+  }
+  if (icon && showTooltip) {
+    return <Tooltip content={tooltip}>{icon}</Tooltip>;
+  }
+  return icon;
+}
+
+export default function Reports() {
+  const history = useHistory();
+  const { clientId } = useQueryParams();
+  const { adminMode } = useUserState();
+
+  const [filterText, setFilterText] = useMemoryState<string>(
+    "reportsFilterText",
+    ""
+  );
+  const [filterTags, setFilterTags] = useMemoryState<string[]>(
+    "reportsFilterTags",
+    []
+  );
+  const [filterState, setFilterState] = useMemoryState<StateFilterValue>(
+    "reportsFilterState",
+    StateFilterValue.SAVED
+  );
+  const [page, setPage] = useMemoryState<number>("reportsPage", 1);
+  const pageSize = 100;
+
+  // Join with commas to put in query param
+  const joinedFilterTags = filterTags.join(",");
+
+  const filterParams = new URLSearchParams({
+    clientId: clientId!,
+    ...(filterText && { filterText }),
+    ...(filterTags && { filterTags: joinedFilterTags }),
+    ...(adminMode && { showAll: "true" }),
+    state: filterState,
+    page: page.toString(),
+    pageSize: pageSize.toString(),
+  }).toString();
+
+  const BREADCRUMBS: IBreadcrumbProps[] = [
+    { href: clientPath(clientId!, "reports"), text: "Reports", current: true },
+  ];
+
+  const { loading, error, data } = useApi(`/reports?${filterParams}`);
+
+  const handleFilterTextChange = useCallback((newValue) => {
+    setFilterText(newValue);
+    setPage(1);
+  }, [setFilterText, setPage]);
+
+  const empty =
+    data?.reports?.length === 0 &&
+    page === 1 &&
+    filterText === "" &&
+    filterTags.length === 0 &&
+    filterState === StateFilterValue.ALL &&
+    !loading;
+
+  let content;
+  if (error) {
+    content = <Callout intent="danger">{String(error)}</Callout>;
+  } else if (!data) {
+    content = <DelayedSpinner />;
+  } else if (empty) {
+    content = (
+      <NonIdealState
+        title="No Reports"
+        description={
+          <>
+            <p>View and organize reports generated by your models.</p>
+            Go to a model to get started.
+          </>
+        }
+        icon="document"
+        action={
+          <Link to={clientPath(clientId!, "models")} className={Classes.BUTTON}>
+            View Models
+          </Link>
+        }
+      />
+    );
+  } else {
+    content = (
+      <>
+        <HTMLTable
+          striped
+          interactive
+          style={{ width: "100%" }}
+          className="sticky-header"
+        >
+          <thead>
+            <tr>
+              <th style={{ width: "40px" }}></th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Tags</th>
+              <th>Model</th>
+              <th>Model Template</th>
+              {/* <th>Created By</th> */}
+              <th>
+                Created At &nbsp; <Icon icon="sort-desc" />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.reports.map((report: Report) => (
+              <tr
+                key={report.id}
+                onClick={() =>
+                  history.push(`/reports/${report.id}?clientId=${clientId}`)
+                }
+              >
+                <td>
+                  <ReportStatusIcon report={report} />
+                </td>
+                <td>
+                  <Link to={`/reports/${report.id}?clientId=${clientId}`}>
+                    {report.name}
+                  </Link>
+                </td>
+                <td>
+                  <p
+                    title={report.description}
+                    style={{
+                      maxWidth: "30vw",
+                      maxHeight: "4em",
+                      overflow: "hidden",
+                      marginBottom: 0,
+                    }}
+                  >
+                    {report.description}
+                  </p>
+                </td>
+                <td>
+                  {report.tags && (
+                    <TagList tags={report.tags.map(({ tag }) => tag)} />
+                  )}
+                </td>
+                <td>{report.model?.name}</td>
+                <td>{report.script?.name}</td>
+                {/* <td>TODO created by</td> */}
+                <td>
+                  {formatTimestamp(report.startTime)}
+                  {report.scheduled && (
+                    <Icon
+                      icon="time"
+                      htmlTitle="Scheduled automatic generation"
+                      style={{ marginLeft: "16px" }}
+                    />
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </HTMLTable>
+        {data.reports.length === 0 && (
+          <NonIdealState
+            title="No Results"
+            description={`
+                Try adjusting your search filters. ${
+                  filterTags.length > 0
+                    ? "Tags are shared across all users in this workspace, so there might be results you don’t have permission to see."
+                    : ""
+                }
+            `}
+            icon="document"
+          />
+        )}
+        <Paginate
+          page={page}
+          onChange={setPage}
+          allowNext={data.reports.length === pageSize}
+        />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Helmet>
+        <title>Reports</title>
+      </Helmet>
+      <div className="breadcrumb-wrapper">
+        <Breadcrumbs
+          items={BREADCRUMBS}
+          breadcrumbRenderer={routerBreadcrumbRenderer}
+        />
+      </div>
+      {/* There is another empty check here so that the input doesn’t get unmounted and lose focus while searching, but still doesn’t show if truly empty. */}
+      {!empty && (
+        <div className="filter-row">
+          <DebouncedInputGroup
+            leftIcon="search"
+            type="text"
+            placeholder={`Search by name or description…`}
+            value={filterText}
+            onValueChange={handleFilterTextChange}
+          />
+          <TagSelector
+            clientId={clientId!}
+            tags={filterTags}
+            onChange={(newTags) => setFilterTags(newTags)}
+          />
+          <StateFilter
+            value={filterState}
+            onChange={(newState) => setFilterState(newState)}
+          />
+          {loading && <Spinner size={Spinner.SIZE_SMALL} />}
+        </div>
+      )}
+      {content}
+    </>
+  );
+}

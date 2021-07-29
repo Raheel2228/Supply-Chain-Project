@@ -1,0 +1,526 @@
+body,
+html,
+#app-root {
+  height: 100%;
+  margin: 0;
+}
+#app-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+body {
+  background-color: #f5f8fa;
+  transition: background-color 0.2s;
+}
+body.bp3-dark {
+  background-color: #30404d;
+}
+
+hr {
+  border: none;
+  border-bottom: 1px solid rgba(16, 22, 26, 0.15);
+  margin: 20px 0;
+}
+.bp3-dark hr {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+hr.inset {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.main-header {
+  position: sticky;
+  flex: 0;
+}
+.nav-content-wrapper {
+  display: flex;
+  flex-grow: 1;
+}
+.main-sidebar {
+  display: flex;
+  flex-direction: column;
+  border-right: solid rgba(16, 22, 26, 0.2) 1px;
+  width: 64px;
+}
+.main-sidebar .bp3-tab-list {
+  flex-grow: 1;
+  min-width: 48px;
+}
+.main-nav {
+  flex-grow: 1;
+  padding: 8px;
+}
+.main-nav-label {
+  display: none;
+}
+.main-nav .bp3-tab {
+  padding: 8px 0 !important;
+  margin: 0 0 8px 0;
+  text-align: center;
+  min-width: 24px;
+}
+
+@media (max-width: 849px) {
+  .main-sidebar .admin-client-view-callout {
+    padding: 4px;
+  }
+  .main-sidebar .admin-client-view-callout * {
+    font-size: 10px;
+    line-height: 12px !important;
+  }
+  .main-sidebar .admin-client-view-callout button {
+    padding: 0;
+    margin-left: -4px;
+  }
+}
+
+/* Larger layout, with labels on tabs */
+@media (min-width: 850px) {
+  .main-sidebar {
+    width: 200px;
+  }
+  .main-nav {
+    padding: 16px;
+    width: 200px;
+  }
+  .main-nav .bp3-tab {
+    padding: 8px 16px !important;
+    text-align: left;
+    margin: 0;
+    width: 100%;
+  }
+  .main-nav-label {
+    display: inline;
+  }
+  .bp3-tab .bp3-icon:first-child {
+    margin-right: 8px;
+  }
+}
+
+.bp3-tab:not(.bp3-active) .bp3-icon:first-child {
+  opacity: 0.7;
+}
+.main-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.main-content {
+  flex-grow: 1;
+  padding: 16px;
+}
+.main-footer {
+  opacity: 0.8;
+  padding: 8px 12px 12px 16px;
+}
+.main-footer > * {
+  padding: 8px;
+  margin-right: 16px;
+}
+
+.breadcrumb-wrapper {
+  display: flex;
+  margin-bottom: 8px;
+}
+.breadcrumb-wrapper .bp3-breadcrumbs {
+  flex-grow: 1;
+}
+.breadcrumb-wrapper .bp3-breadcrumbs li {
+  white-space: nowrap;
+}
+.breadcrumb-wrapper .bp3-button {
+  margin-left: 8px;
+}
+
+.filter-row {
+  display: flex;
+  flex-direction: row;
+  margin: 8px 0;
+}
+.filter-row > div,
+.filter-row > span {
+  margin: 0 8px 0 0;
+}
+.filter-row input[type="text"],
+.filter-row .bp3-multi-select {
+  min-width: 250px;
+}
+
+.time-form-group .bp3-label {
+  padding-top: 24px;
+}
+
+.bp3-tabs.bp3-vertical > .bp3-tab-list .bp3-tab.bp3-active {
+  box-shadow: none;
+  background-color: rgba(19, 124, 189, 0.2);
+}
+.bp3-tab.bp3-active,
+.bp3-tab:not(.bp3-active):hover {
+  color: #106ba3;
+}
+
+.bp3-dark .bp3-tab.bp3-active,
+.bp3-dark .bp3-tab:not(.bp3-active):hover {
+  color: #77caff;
+}
+
+/* Model editor has groups in cards; report separates them with an hr */
+.input-group-card {
+  margin-bottom: 16px;
+}
+
+.input-group-divider {
+  width: calc(100% + 40px);
+  margin: 16px 0 12px -20px;
+}
+
+.dataset-selector:not(:last-of-type) {
+  margin-bottom: 16px;
+}
+
+.dataset-input:last-of-type {
+  /* For input group toggle, to vertically center in otherwise-empty card */
+  margin-bottom: -3px;
+}
+.dataset-input:not(:last-of-type) {
+  /* Otherwise put spacing between inputs */
+  margin-bottom: 16px;
+}
+.dataset-input .bp3-switch .bp3-control-indicator {
+  margin-right: 16px;
+}
+
+.dataset-selector input[disabled] {
+  cursor: default;
+}
+
+.bp3-menu-item.bp3-active .user-label span {
+  color: white;
+}
+
+/** Make disabled input have more legible text contrast */
+.bp3-input:disabled,
+.bp3-input.bp3-disabled {
+  color: rgb(85, 100, 112) !important;
+}
+.bp3-dark .bp3-input:disabled,
+.bp3-dark .bp3-input.bp3-disabled {
+  color: rgb(199, 211, 221) !important;
+}
+
+/** Big Run Model button */
+button.run-model-button {
+  margin: 0 auto;
+  display: block;
+}
+/* Add a little whimsy to the button’s icon */
+button.run-model-button .bp3-icon {
+  transition: transform cubic-bezier(0.175, 0.885, 0.32, 1.575) 0.2s;
+}
+button.run-model-button:hover .bp3-icon {
+  transform: translateX(8px);
+}
+
+/** Sticky footer for long dialogs (like dataset list) */
+.sticky-dialog-footer {
+  position: sticky;
+  bottom: 0;
+  background: inherit;
+  padding: 16px 16px;
+  margin: 0 0 -16px 0 !important;
+  box-shadow: rgba(16, 22, 26, 0.15) 0px 1px 0px 0px inset;
+}
+.bp3-dark .sticky-dialog-footer {
+  box-shadow: rgba(255, 255, 255, 0.15) 0px 1px 0px 0px inset;
+}
+
+/** Sticky table headers */
+.sticky-header th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: rgba(16, 22, 26, 0.15) 0px -1px 0px 0px inset;
+  background: #f5f8fa;
+}
+.bp3-dark .sticky-header th {
+  box-shadow: rgba(255, 255, 255, 0.15) 0px -1px 0px 0px inset;
+  background: #30404d;
+}
+
+/* Border is displayed on bottom of th instead of top of first tr */
+.sticky-header tr:first-child td {
+  box-shadow: none !important;
+}
+
+.client-card-grid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-rows: minmax(150px, 1fr);
+  grid-gap: 16px;
+}
+.client-card {
+  display: flex;
+  min-height: 200px;
+}
+.client-card a {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.client-card img {
+  max-width: 100%;
+  max-height: 150px;
+  width: auto;
+  height: auto;
+  margin: 0 auto 16px auto;
+  border-radius: 3px;
+}
+
+.selected-dataset-row {
+  background: #137cbd;
+}
+.selected-dataset-row td {
+  color: white !important;
+}
+button.bp3-small.dataset-preview-button {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+button.bp3-button.dataset-preview-button {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.blob-html,
+.blob-iframe,
+.blob-markdown {
+  border: none;
+  width: 100%;
+  margin: 8px 0;
+}
+
+/* Markdown editing and preview */
+.blob-markdown-preview {
+  border: solid transparent 1px;
+  border-radius: 4px;
+  transition: background-color ease-out 0.05s;
+}
+.blob-markdown.editable:hover .blob-markdown-preview {
+  background-color: rgba(124, 124, 124, 0.05);
+}
+.bp3-dark .blob-markdown.editable:hover .blob-markdown-preview {
+  background-color: rgba(124, 124, 124, 0.1);
+}
+.blob-markdown .edit-button {
+  position: relative;
+  float: right;
+  opacity: 0.5;
+  transition: opacity ease-out 0.05s;
+  z-index: 1;
+}
+.blob-markdown:hover .edit-button {
+  opacity: 1;
+}
+.blob-markdown .toolbar-extension {
+  background: whitesmoke;
+  height: 46px;
+  position: relative;
+  float: right;
+  border: solid #e0e0e0 1px;
+  padding: 7px;
+  border-top-right-radius: 3px;
+  border-left: none;
+  z-index: 1;
+}
+.blob-markdown .toolbar-extension > * {
+  margin-left: 8px;
+}
+
+.blob-markdown div.rc-md-editor {
+  display: block;
+  background: inherit;
+  border-radius: 4px;
+}
+.blob-markdown .rc-md-navigation {
+  border-top-left-radius: 3px;
+  height: 45px;
+}
+.blob-markdown div.rc-md-editor textarea {
+  background: inherit !important;
+  color: inherit !important;
+}
+
+/* Report sidebar toggle */
+.sidebar-toggle {
+  flex: 0 0 16px;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+.sidebar-toggle:hover {
+  background: rgba(16, 22, 26, 0.2);
+}
+.sidebar-toggle div {
+  height: 100%;
+}
+.sidebar-toggle svg {
+  margin-top: 40vh;
+}
+
+.report-tab-list hr {
+  margin-top: 0 !important;
+}
+.report-tab-list .bp3-tab {
+  padding: 4px;
+  margin-right: 12px !important;
+}
+.report-tab-list .bp3-tab:hover {
+  background: rgba(19, 124, 189, 0.2) !important;
+  border-radius: 2px;
+}
+.report-tab-list .bp3-tab-list {
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.tag-list-row .bp3-tag {
+  overflow-wrap: break-word;
+  margin-right: 5px;
+}
+
+.dataset-drawer-preview-portal {
+  position: fixed !important;
+  height: 100%;
+  width: calc(100% - 360px);
+  z-index: 20;
+}
+.floating-spinner-container {
+  width: 90px;
+  position: absolute;
+  top: calc(50% - 45px);
+  left: calc(50% - 45px);
+  border-radius: 50px !important;
+  z-index: 2;
+}
+.floating-spinner-container [icon] {
+  opacity: 0.5;
+  position: absolute;
+  top: 35px;
+  left: 35px;
+}
+
+/* To make popover-wrapped Rename button full-width in dataset actions menu */
+.bp3-menu > li > .bp3-popover-target {
+  display: list-item;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+/* In AdminClientScriptDetails */
+.admin-client-script-details-table {
+  width: 100%;
+}
+
+td {
+  vertical-align: middle !important;
+}
+
+.admin-client-script-details-table td:not(:first-child) {
+  width: 250px;
+}
+
+.admin-client-script-details-table td .bp3-button {
+  margin-right: 8px;
+}
+
+.bp3-large .bp3-menu-header:first-of-type > h6 {
+  padding-top: 8px !important;
+}
+
+/* Public report viewer doesn’t have the navbar and other UI */
+.public-report-wrapper {
+  margin: 0 auto;
+  max-width: 1440px;
+  padding: 32px 16px 16px 16px;
+}
+.public-report-header {
+  display: flex;
+  margin-bottom: 16px;
+  flex-direction: column;
+}
+.public-report-header div {
+  display: flex;
+}
+.public-report-header h1 {
+  flex: 1;
+}
+.public-report-header button {
+  margin-top: -8px;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+.public-report-footer {
+  text-align: center;
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+.public-report-footer > * {
+  padding: 8px;
+}
+
+/* SpreadJS-specific styles */
+.spread-container {
+  height: 100%;
+  box-shadow: grey 0 0 2px;
+}
+/* Disable interaction in read-only mode */
+.read-only .gc-formulaBar {
+  cursor: not-allowed !important;
+}
+.read-only .formula-bar-item {
+  pointer-events: none;
+}
+.spreadjs-edit-indicator {
+  width: 70px;
+  text-align: center;
+  position: absolute !important;
+  top: 5px;
+  left: 5px;
+  z-index: 5;
+}
+
+/* Scoot ribbon tabs over for edit indicator */
+.gc-ribbon-bar .ribbon-navigation {
+  padding-left: 80px !important;
+}
+.gc-ribbon-bar .ribbon-navigation .ribbon-navigation-item {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.gc-ribbon-bar .ribbon-navigation .ribbon-navigation-item a {
+  color: #182026 !important;
+}
+
+/* Prevent unreadable text contrast for Spread UI elements in dark mode */
+.bp3-dark #designer > * {
+  color: #182026;
+}
+.bp3-dark .gc-no-user-select {
+  color: black;
+}
+
+/* Account Settings */
+.account-settings {
+  max-width: 500px;
+}
+.account-settings label {
+  margin-top: 8px !important;
+  font-size: 120%;
+}

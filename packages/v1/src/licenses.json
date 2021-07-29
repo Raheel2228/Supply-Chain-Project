@@ -1,0 +1,222 @@
+{
+    "@auth0/auth0-spa-js": {
+        "licenses": "MIT",
+        "repository": "https://github.com/auth0/auth0-spa-js",
+        "licenseUrl": "https://github.com/auth0/auth0-spa-js/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "@blueprintjs/core": {
+        "licenses": "Apache-2.0",
+        "repository": "https://github.com/palantir/blueprint",
+        "licenseUrl": "https://github.com/palantir/blueprint/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "@blueprintjs/datetime": {
+        "licenses": "Apache-2.0",
+        "repository": "https://github.com/palantir/blueprint",
+        "licenseUrl": "https://github.com/palantir/blueprint/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "@blueprintjs/icons": {
+        "licenses": "Apache-2.0",
+        "repository": "https://github.com/palantir/blueprint",
+        "licenseUrl": "https://github.com/palantir/blueprint/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "@blueprintjs/select": {
+        "licenses": "Apache-2.0",
+        "repository": "https://github.com/palantir/blueprint",
+        "licenseUrl": "https://github.com/palantir/blueprint/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "@blueprintjs/table": {
+        "licenses": "Apache-2.0",
+        "repository": "https://github.com/palantir/blueprint",
+        "licenseUrl": "https://github.com/palantir/blueprint/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "@grapecity/spread-excelio": {
+        "licenses": "Commercial",
+        "licenseUrl": "https://www.grapecity.com/spreadjs",
+        "parents": "capabl-frontend"
+    },
+    "@grapecity/spread-sheets-react": {
+        "licenses": "Commercial",
+        "licenseUrl": "https://www.grapecity.com/spreadjs",
+        "parents": "capabl-frontend"
+    },
+    "@sentry/browser": {
+        "licenses": "BSD-3-Clause",
+        "repository": "https://github.com/getsentry/sentry-javascript",
+        "licenseUrl": "https://github.com/getsentry/sentry-javascript/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "@testing-library/jest-dom": {
+        "licenses": "MIT",
+        "repository": "https://github.com/testing-library/jest-dom",
+        "licenseUrl": "https://github.com/testing-library/jest-dom/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "@testing-library/react": {
+        "licenses": "MIT",
+        "repository": "https://github.com/testing-library/react-testing-library",
+        "licenseUrl": "https://github.com/testing-library/react-testing-library/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "@testing-library/user-event": {
+        "licenses": "MIT",
+        "repository": "https://github.com/testing-library/user-event",
+        "licenseUrl": "https://github.com/testing-library/user-event/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "@types/classnames": {
+        "licenses": "MIT",
+        "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+        "licenseUrl": "https://github.com/DefinitelyTyped/DefinitelyTyped/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "@types/dompurify": {
+        "licenses": "MIT",
+        "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+        "licenseUrl": "https://github.com/DefinitelyTyped/DefinitelyTyped/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "@types/jest": {
+        "licenses": "MIT",
+        "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+        "licenseUrl": "https://github.com/DefinitelyTyped/DefinitelyTyped/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "@types/lodash.debounce": {
+        "licenses": "MIT",
+        "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+        "licenseUrl": "https://github.com/DefinitelyTyped/DefinitelyTyped/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "@types/marked": {
+        "licenses": "MIT",
+        "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+        "licenseUrl": "https://github.com/DefinitelyTyped/DefinitelyTyped/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "@types/papaparse": {
+        "licenses": "MIT",
+        "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+        "licenseUrl": "https://github.com/DefinitelyTyped/DefinitelyTyped/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "@types/react": {
+        "licenses": "MIT",
+        "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+        "licenseUrl": "https://github.com/DefinitelyTyped/DefinitelyTyped/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "@types/recoil": {
+        "licenses": "MIT",
+        "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+        "licenseUrl": "https://github.com/DefinitelyTyped/DefinitelyTyped/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "classnames": {
+        "licenses": "MIT",
+        "repository": "https://github.com/JedWatson/classnames",
+        "licenseUrl": "https://github.com/JedWatson/classnames/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "cronstrue": {
+        "licenses": "MIT",
+        "repository": "https://github.com/bradymholt/cronstrue",
+        "licenseUrl": "https://github.com/bradymholt/cronstrue/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "dompurify": {
+        "licenses": "MPL-2.0 OR Apache-2.0",
+        "repository": "https://github.com/cure53/DOMPurify",
+        "licenseUrl": "https://github.com/cure53/DOMPurify/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "lodash.debounce": {
+        "licenses": "MIT",
+        "repository": "https://github.com/lodash/lodash",
+        "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "marked": {
+        "licenses": "MIT",
+        "repository": "https://github.com/markedjs/marked",
+        "licenseUrl": "https://github.com/markedjs/marked/raw/master/LICENSE.md",
+        "parents": "capabl-frontend"
+    },
+    "normalize.css": {
+        "licenses": "MIT",
+        "repository": "https://github.com/necolas/normalize.css",
+        "licenseUrl": "https://github.com/necolas/normalize.css/raw/master/LICENSE.md",
+        "parents": "capabl-frontend"
+    },
+    "papaparse": {
+        "licenses": "MIT",
+        "repository": "https://github.com/mholt/PapaParse",
+        "licenseUrl": "https://github.com/mholt/PapaParse/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "react-dom": {
+        "licenses": "MIT",
+        "repository": "https://github.com/facebook/react",
+        "licenseUrl": "https://github.com/facebook/react/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "react-dropzone": {
+        "licenses": "MIT",
+        "repository": "https://github.com/react-dropzone/react-dropzone",
+        "licenseUrl": "https://github.com/react-dropzone/react-dropzone/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "react-helmet-async": {
+        "licenses": "Apache-2.0",
+        "repository": "https://github.com/NYTimes/react-helmet-async",
+        "licenseUrl": "https://github.com/NYTimes/react-helmet-async/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "react-hook-form": {
+        "licenses": "MIT",
+        "repository": "https://github.com/react-hook-form/react-hook-form",
+        "licenseUrl": "https://github.com/react-hook-form/react-hook-form/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "react-markdown-editor-lite": {
+        "licenses": "MIT",
+        "repository": "https://github.com/HarryChen0506/react-markdown-editor-lite",
+        "licenseUrl": "https://github.com/HarryChen0506/react-markdown-editor-lite/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "react-router-dom": {
+        "licenses": "MIT",
+        "repository": "https://github.com/ReactTraining/react-router",
+        "licenseUrl": "https://github.com/ReactTraining/react-router/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "react-scripts": {
+        "licenses": "MIT",
+        "repository": "https://github.com/facebook/create-react-app",
+        "licenseUrl": "https://github.com/facebook/create-react-app/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "react": {
+        "licenses": "MIT",
+        "repository": "https://github.com/facebook/react",
+        "licenseUrl": "https://github.com/facebook/react/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "recoil": {
+        "licenses": "MIT",
+        "repository": "https://github.com/facebookexperimental/recoil",
+        "licenseUrl": "https://github.com/facebookexperimental/recoil/raw/master/LICENSE",
+        "parents": "capabl-frontend"
+    },
+    "typescript": {
+        "licenses": "Apache-2.0",
+        "repository": "https://github.com/Microsoft/TypeScript",
+        "licenseUrl": "https://github.com/Microsoft/TypeScript/raw/master/LICENSE.txt",
+        "parents": "capabl-frontend"
+    }
+}
